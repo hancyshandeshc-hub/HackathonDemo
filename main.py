@@ -21,6 +21,7 @@ from typing import TypedDict, Annotated
 
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
@@ -67,6 +68,11 @@ chatbot = graph.compile(checkpointer=checkpointer)
 
 # ---------- Flask app ----------
 app = Flask(__name__, static_folder=".", static_url_path="")
+
+# Allow requests from your GitHub Pages site (and anywhere else, for a
+# hackathon demo) since the frontend and backend now live on different
+# domains once deployed.
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 @app.route("/")
@@ -134,4 +140,6 @@ def chat():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 3000))
-    app.run(port=port, debug=True)
+    # 0.0.0.0 is required on hosts like Render/Railway; 127.0.0.1 only
+    # accepts connections from the same machine.
+    app.run(host="0.0.0.0", port=port, debug=True)
