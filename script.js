@@ -20,7 +20,7 @@ form.addEventListener('submit', async (e) => {
 
     try {
     
-        const response = await fetch('https://project-no-1-tsf2.onrender.com/predict', {
+        const response = await fetch('https://hackathondemo-2.onrender.com/predict', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
