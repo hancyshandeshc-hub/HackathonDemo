@@ -3,104 +3,169 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Demo Site — Chat Widget</title> 
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-<style>
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: #1C1E1B;
-    background: #FAF9F6;
-  }
-  header {
-    padding: 20px 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #E4E1D8;
-  }
-  header .logo { font-weight: 700; font-size: 18px; }
-  main {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 80px 24px;
-    text-align: center;
-  }
-  main h1 { font-size: 32px; margin-bottom: 12px; }
-  main p { font-size: 16px; color: #57534A; line-height: 1.6; }
-  .hint {
-    margin-top: 48px;
-    font-size: 13.5px;
-    color: #8A867B;
-  }
-</style>
+<title>DriveValue — AI Assistant &amp; Car Price Estimator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <div class="logo">YourCompany</div>
-  <div>Home · Product · Pricing</div>
+
+<header class="site-header">
+  <div class="wrap header-row">
+    <a class="brand" href="#top">DriveValue</a>
+    <nav class="site-nav">
+      <a href="#assistant">Assistant</a>
+      <a href="#predictor">Price estimator</a>
+    </nav>
+  </div>
 </header>
 
-<main>
-  <div class="container">
-    <h1>Car Price Prediction</h1>
-    <form id="predictionForm">
-        <label for="name">Name of the Car</label>
-        <input list="names" name="name" id="name" placeholder="Select or type name">
-        <datalist id="names">
-            <option value="Hyundai Santro Xing">
-            <option value="Maruti Suzuki Alto">
-            <option value="Hyundai Grand i10">
-            <option value="Hyundai Elite i20">
-            <option value="Maruti Suzuki Swift">
-            <option value="Maruti Suzuki Wagon">
-            <option value="Maruti Suzuki Ertiga">
-            <option value="Others">
-        </datalist>
+<main id="top">
 
-        <label for="company">Company:</label>
-        <select id="company" name="company" required>
-            <option value="">--Select--</option>
-            <option value="Hyundai">Hyundai</option>
-            <option value="Mahindra">Mahindra</option>
-            <option value="Maruti">Maruti</option>
-            <option value="Ford">Ford</option>
-            <option value="Toyota">Toyota</option>
-            <option value="Renault">Renault</option>
-            <option value="Honda">Honda</option>
-            <option value="Tata">Tata</option>
-            <option value="Chevrolet">Chevrolet</option>
-            <option value="Others">Others</option>
-        </select>
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <h1>Know what a car is worth before you talk numbers.</h1>
+        <p class="lede">
+          DriveValue pairs a resale-price model trained on real listings
+          with a live assistant you can ask questions along the way —
+          both built for this hackathon, both running right now.
+        </p>
+        <div class="hero-actions">
+          <a href="#predictor" class="btn btn-amber">Estimate a price</a>
+          <a href="#assistant" class="btn btn-outline">Ask the assistant</a>
+        </div>
+      </div>
 
-        <label for="year">Year</label>
-        <input type="number" id="year" name="year" min="1900" max="2026" placeholder="YYYY" required>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 260 180" class="gauge">
+          <path d="M30 150 A100 100 0 0 1 230 150" fill="none" stroke="#E4E1D8" stroke-width="14" stroke-linecap="round"/>
+          <path d="M30 150 A100 100 0 0 1 230 150" fill="none" stroke="#2E5E4E" stroke-width="14" stroke-linecap="round"
+                stroke-dasharray="220" stroke-dashoffset="55" class="gauge-arc"/>
+          <g class="gauge-needle">
+            <line x1="130" y1="150" x2="130" y2="62" stroke="#C2791E" stroke-width="4" stroke-linecap="round"/>
+          </g>
+          <circle cx="130" cy="150" r="9" fill="#1C1E1B"/>
+          <text x="130" y="128" text-anchor="middle" class="gauge-label">est. value</text>
+        </svg>
+      </div>
+    </div>
+  </section>
 
-        <label for="kms_driven">KMS Driven</label>
-        <input type="number" id="kms_driven" name="kms_driven" min="0" placeholder="Kilometers Driven" required>
+  <!-- ===================== ASSISTANT SECTION ===================== -->
+  <section id="assistant" class="feature feature-assistant">
+    <div class="wrap feature-grid">
+      <div class="feature-text">
+        <p class="eyebrow">Talk to the assistant</p>
+        <h2>Questions? It's already on this page.</h2>
+        <p>
+          Open the chat bubble in the bottom-right corner any time — before,
+          during, or after you get a price estimate. It's a small
+          floating assistant, not a separate page, so it's there whichever
+          part of the site you're on.
+        </p>
+        <ul class="feature-points">
+          <li>Answers general questions in plain language</li>
+          <li>Stays out of the way until you open it</li>
+          <li>Works on its own — no need to fill in the form first</li>
+        </ul>
+      </div>
+      <div class="feature-hint">
+        <div class="hint-card">
+          <span class="hint-dot"></span>
+          Click the bubble bottom-right to try it →
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <button type="submit">Predict</button>
-    </form>
+  <hr class="section-rule" />
 
-    <div id="result"></div>
-</div>
-<script src="script.js"></script>
+  <!-- ===================== PREDICTOR SECTION ===================== -->
+  <section id="predictor" class="feature feature-predictor">
+    <div class="wrap">
+      <p class="eyebrow eyebrow-amber">Estimate a price</p>
+      <h2>Tell us about the car.</h2>
+      <p class="section-lede">
+        Four details are enough for a rough resale estimate. This runs on a
+        model trained separately from the assistant above — its own service,
+        its own logic.
+      </p>
+
+      <div class="predictor-grid">
+        <form id="predictionForm" class="predictor-form">
+          <div class="field">
+            <label for="name">Model name</label>
+            <input list="names" name="name" id="name" placeholder="Start typing or pick one" required>
+            <datalist id="names">
+              <option value="Hyundai Santro Xing">
+              <option value="Maruti Suzuki Alto">
+              <option value="Hyundai Grand i10">
+              <option value="Hyundai Elite i20">
+              <option value="Maruti Suzuki Swift">
+              <option value="Maruti Suzuki Wagon">
+              <option value="Maruti Suzuki Ertiga">
+              <option value="Others">
+            </datalist>
+          </div>
+
+          <div class="field">
+            <label for="company">Company</label>
+            <select id="company" name="company" required>
+              <option value="">Select a company</option>
+              <option value="Hyundai">Hyundai</option>
+              <option value="Mahindra">Mahindra</option>
+              <option value="Maruti">Maruti</option>
+              <option value="Ford">Ford</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Renault">Renault</option>
+              <option value="Honda">Honda</option>
+              <option value="Tata">Tata</option>
+              <option value="Chevrolet">Chevrolet</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="year">Year</label>
+              <input type="number" id="year" name="year" min="1900" max="2026" placeholder="e.g. 2018" required>
+            </div>
+            <div class="field">
+              <label for="kms_driven">Kilometers driven</label>
+              <input type="number" id="kms_driven" name="kms_driven" min="0" placeholder="e.g. 45000" required>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-amber btn-block">Estimate price</button>
+        </form>
+
+        <div id="result" class="result-panel"></div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<!-- ===== Chat widget embed — just these two lines ===== -->
+<footer class="site-footer">
+  <div class="wrap">Built for a hackathon — assistant and predictor run as two independent services.</div>
+</footer>
+
+<!-- ===== Chat widget embed ===== -->
 <link rel="stylesheet" href="widget.css" />
 <script>
-  // Optional: override defaults before the widget script loads
   window.CW_CONFIG = {
     apiUrl: "https://hackathondemo-6jpr.onrender.com/api/chat",
-    title: "YourCompany Assistant",
+    title: "DriveValue Assistant",
     subtitle: "Ask us anything",
     greeting: "Hi! I'm here to help — what would you like to know?",
   };
 </script>
 <script src="widget.js"></script>
+
+<!-- ===== Predictor form logic (unchanged) ===== -->
+<script src="script.js"></script>
 
 </body>
 </html>
