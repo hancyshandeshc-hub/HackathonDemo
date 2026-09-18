@@ -17,6 +17,7 @@ Then open http://localhost:3000
 """
 
 import os
+import uuid
 from typing import TypedDict, Annotated
 
 from dotenv import load_dotenv
@@ -107,12 +108,14 @@ def chat():
         messages = [HumanMessage(content=message)]
 
     try:
-        # thread_id groups a conversation for the checkpointer. Since the
-        # widget already sends full history each turn, a fixed id per
-        # server process is fine for a hackathon demo.
+        # Each request gets its own fresh thread_id. The widget already
+        # sends the full conversation history every turn, so the backend
+        # doesn't need to remember anything between requests — reusing one
+        # fixed thread_id here would (and did) mix different visitors'
+        # conversations together.
         result = chatbot.invoke(
             {"messages": messages},
-            config={"configurable": {"thread_id": "widget-session"}},
+            config={"configurable": {"thread_id": str(uuid.uuid4())}},
         )
         raw_content = result["messages"][-1].content
 
