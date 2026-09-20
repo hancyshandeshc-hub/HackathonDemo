@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rainfall Prediction | RainfallNepal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" /><link rel="stylesheet" href="chatbot.css" />
+</head>
+<body class="prediction-page">
+  <div class="page-glow page-glow-one"></div><div class="page-glow page-glow-two"></div>
+  <header class="site-header"><div class="container nav-wrap">
+    <a class="brand" href="index.html"><span class="brand-mark"><span></span><span></span><span></span></span><span>Rainfall<span class="brand-accent">Nepal</span></span></a>
+    <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+    <nav class="site-nav"><a href="index.html">Home</a><a class="active" href="prediction.html">Prediction</a><a href="faq.html">FAQ</a><a href="contact.html">Contact Us</a></nav>
+  </div></header>
+
+  <main>
+    <section class="page-hero compact"><div class="container reveal"><span class="eyebrow">RAINFALL PREDICTION</span><h1>Predict rainfall for a Nepal district.</h1><p>Enter the climate conditions below. The model response is shown in <strong>millimetres per day (mm/day)</strong>, followed by a rainfall category and environmental awareness note.</p></div></section>
+
+    <section class="prediction-shell"><div class="container prediction-layout">
+      <div class="form-card glass-card reveal">
+        <div class="form-head"><div><span class="eyebrow">MODEL INPUTS</span><h2>Tell us about the conditions</h2></div><span class="required-note">All fields required</span></div>
+        <form id="predictionForm" novalidate>
+          <div class="form-grid">
+            <div class="field field-full"><label for="month">Forecast month <span>*</span></label><div class="field-help">The month you want the rainfall estimate for.</div><select id="month" name="month" required><option value="">Select a month</option><option value="1">January</option><option value="2">February</option><option value="3">March</option><option value="4">April</option><option value="5">May</option><option value="6">June</option><option value="7">July</option><option value="8">August</option><option value="9">September</option><option value="10">October</option><option value="11">November</option><option value="12">December</option></select></div>
+            <div class="field field-full"><label for="district">District <span>*</span></label><div class="field-help">Choose the Nepal district for this prediction.</div><select id="district" name="district" required><option value="">Select a district</option></select></div>
+            <div class="field"><label for="rh2m">Air humidity at 2m (%) <span>*</span></label><div class="field-help">RH2M — relative humidity near ground level.</div><input id="rh2m" name="rh2m" type="number" min="0" max="100" step="0.01" placeholder="e.g. 72.5" required></div>
+            <div class="field"><label for="t2m">Temperature at 2m (°C) <span>*</span></label><div class="field-help">T2M — near-surface air temperature.</div><input id="t2m" name="t2m" type="number" step="0.01" placeholder="e.g. 24.8" required></div>
+            <div class="field"><label for="ws10m">Wind speed at 10m (m/s) <span>*</span></label><div class="field-help">WS10M — wind speed measured around 10m above the surface.</div><input id="ws10m" name="ws10m" type="number" min="0" step="0.01" placeholder="e.g. 2.4" required></div>
+            <div class="field"><label for="ps">Surface pressure (kPa) <span>*</span></label><div class="field-help">PS — surface atmospheric pressure. Use the unit expected by your trained model.</div><input id="ps" name="ps" type="number" min="0" step="0.001" placeholder="e.g. 84.5" required></div>
+            <div class="field"><label for="prectotLastMonth">Rainfall last month (mm/day) <span>*</span></label><div class="field-help">PRECTOT_LAST_MONTH — previous month's precipitation input.</div><input id="prectotLastMonth" name="prectot_last_month" type="number" min="0" step="0.01" placeholder="e.g. 12.6" required></div>
+            <div class="field"><label for="rh2mLastMonth">Humidity last month (%) <span>*</span></label><div class="field-help">RH2M_LAST_MONTH — previous month's humidity input.</div><input id="rh2mLastMonth" name="rh2m_last_month" type="number" min="0" max="100" step="0.01" placeholder="e.g. 70.2" required></div>
+          </div>
+          <div class="form-note"><span>ⓘ</span><p>Use the same units and preprocessing used while training <code>model.pkl</code>. The frontend does not alter the values.</p></div>
+          <button class="btn btn-primary btn-block btn-lg" id="predictBtn" type="submit"><span class="btn-label">Predict Rainfall</span><span class="btn-loader" aria-hidden="true"></span><span>→</span></button>
+          <p class="api-note" id="apiStatus">Prediction service: <strong>ready</strong></p>
+        </form>
+      </div>
+
+      <aside class="result-side reveal delay-1">
+        <div class="result-empty" id="resultEmpty"><div class="result-icon">☁</div><span class="eyebrow">YOUR RESULT</span><h2>Waiting for your prediction</h2><p>Fill in the eight inputs and press Predict Rainfall. Your result will appear here.</p><div class="result-mini-list"><span>✓ Value in mm/day</span><span>✓ Rainfall category</span><span>✓ Environmental awareness</span><span>✓ Category image</span></div></div>
+        <div class="result-card" id="resultCard" hidden>
+          <div class="result-card-top"><span class="eyebrow">PREDICTION RESULT</span><span class="result-badge" id="resultBadge">Moderate</span></div>
+          <div class="rain-value"><strong id="rainValue">0.0</strong><span>mm/day</span></div>
+          <h2 id="rainCategory">Moderate Rainfall</h2>
+          <p id="rainMessage"></p>
+          <div class="result-image-wrap"><img id="rainImage" src="assets/images/moderate-rainfall.jpg" alt="Rainfall category illustration" /></div>
+          <div class="awareness-box"><span class="awareness-icon">🌱</span><div><b>Environmental awareness</b><p id="awarenessText"></p></div></div>
+          <button class="result-reset" type="button" id="resetPrediction">↻ Make another prediction</button>
+        </div>
+        <div class="range-card"><span class="eyebrow">RAINFALL SCALE</span><div class="range-row"><span class="range-dot none"></span><b>No rainfall</b><small>0 mm</small></div><div class="range-row"><span class="range-dot very-low"></span><b>Very low</b><small>0.1–2.4 mm</small></div><div class="range-row"><span class="range-dot low"></span><b>Low</b><small>2.5–7.5 mm</small></div><div class="range-row"><span class="range-dot moderate"></span><b>Moderate</b><small>7.6–35.5 mm</small></div><div class="range-row"><span class="range-dot high"></span><b>High</b><small>35.6–64.4 mm</small></div><div class="range-row"><span class="range-dot very-high"></span><b>Very high</b><small>≥64.5 mm</small></div></div>
+      </aside>
+    </div></section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-bottom"><span>Rainfall Prediction for Districts of Nepal</span><a href="index.html">← Back to home</a></div></footer>
+  <script>window.CW_CONFIG={apiUrl:"/api/chat",title:"RainfallNepal Assistant",subtitle:"Ask about rainfall & the predictor",greeting:"Hi! Ask me anything about the rainfall predictor."};</script>
+  <script src="config.js"></script><script src="site.js"></script><script src="prediction.js"></script><script src="chatbot.js"></script>
+</body>
+</html>

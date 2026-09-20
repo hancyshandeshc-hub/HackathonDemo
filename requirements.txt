@@ -1,0 +1,14 @@
+flask
+flask-cors
+gunicorn
+python-dotenv
+langgraph
+langchain-core
+langchain-google-genai
+joblib
+numpy
+pandas
+# IMPORTANT: pin scikit-learn (or xgboost/lightgbm, whatever you trained with)
+# to the SAME version you used when you created model.pkl, e.g.:
+# scikit-learn==1.5.2
+scikit-learn
