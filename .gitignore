@@ -1,6 +1,0 @@
-   venv/
-   myenv/
-   __pycache__/
-   *.pyc
-   .env
-   .env.python
