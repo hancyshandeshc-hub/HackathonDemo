@@ -1,0 +1,260 @@
+/* ===== Chat Widget Styles =====
+   Drop this file on any site and it will not clash with existing
+   styles — everything is scoped under #cw-root and uses CSS variables
+   so you can re-theme it by overriding the variables below. */
+
+:root {
+  --cw-accent: #2E5E4E;      /* deep pine green — primary */
+  --cw-accent-hover: #244B3E;
+  --cw-bubble-user: #2E5E4E;
+  --cw-bubble-bot: #F1EFE9;
+  --cw-text-dark: #1C1E1B;
+  --cw-text-light: #FFFFFF;
+  --cw-panel-bg: #FFFFFF;
+  --cw-border: #E4E1D8;
+  --cw-shadow: 0 12px 32px rgba(28, 30, 27, 0.18);
+  --cw-radius: 16px;
+  --cw-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+#cw-root {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999999;
+  font-family: var(--cw-font);
+  --cw-vh-offset: 24px;
+}
+
+/* ---------- Floating toggle button ---------- */
+#cw-toggle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: var(--cw-accent);
+  color: var(--cw-text-light);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--cw-shadow);
+  transition: transform 0.18s ease, background 0.18s ease;
+}
+
+#cw-toggle:hover {
+  background: var(--cw-accent-hover);
+  transform: scale(1.05);
+}
+
+#cw-toggle:focus-visible {
+  outline: 3px solid var(--cw-accent);
+  outline-offset: 3px;
+}
+
+#cw-toggle svg {
+  width: 26px;
+  height: 26px;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+#cw-toggle .cw-icon-close {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.7) rotate(-45deg);
+}
+
+#cw-root.cw-open #cw-toggle .cw-icon-chat {
+  opacity: 0;
+  transform: scale(0.7) rotate(45deg);
+}
+
+#cw-root.cw-open #cw-toggle .cw-icon-close {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+}
+
+/* small unread dot, shown before first open */
+#cw-toggle .cw-dot {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #D9622B;
+  border: 2px solid var(--cw-panel-bg);
+}
+#cw-toggle .cw-dot[hidden] { display: none; }
+
+/* ---------- Chat panel ---------- */
+#cw-panel {
+  position: absolute;
+  bottom: 76px;
+  right: 0;
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  height: min(520px, calc(100vh - 120px));
+  background: var(--cw-panel-bg);
+  border-radius: var(--cw-radius);
+  box-shadow: var(--cw-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(12px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.16s ease, transform 0.16s ease;
+}
+
+#cw-root.cw-open #cw-panel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+#cw-header {
+  background: var(--cw-accent);
+  color: var(--cw-text-light);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+#cw-header .cw-title {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+#cw-header .cw-subtitle {
+  font-size: 12.5px;
+  opacity: 0.85;
+}
+
+#cw-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #FAF9F6;
+}
+
+.cw-msg {
+  max-width: 82%;
+  padding: 10px 13px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.cw-msg-user {
+  align-self: flex-end;
+  background: var(--cw-bubble-user);
+  color: var(--cw-text-light);
+  border-bottom-right-radius: 4px;
+}
+
+.cw-msg-bot {
+  align-self: flex-start;
+  background: var(--cw-bubble-bot);
+  color: var(--cw-text-dark);
+  border-bottom-left-radius: 4px;
+}
+
+.cw-msg-error {
+  align-self: flex-start;
+  background: #FBE9E7;
+  color: #8A2E1F;
+  border-bottom-left-radius: 4px;
+}
+
+/* typing indicator */
+.cw-typing {
+  align-self: flex-start;
+  display: flex;
+  gap: 4px;
+  padding: 12px 14px;
+  background: var(--cw-bubble-bot);
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+}
+.cw-typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #9A968A;
+  animation: cw-bounce 1.1s infinite ease-in-out;
+}
+.cw-typing span:nth-child(2) { animation-delay: 0.15s; }
+.cw-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes cw-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+#cw-form {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 10px;
+  border-top: 1px solid var(--cw-border);
+  background: var(--cw-panel-bg);
+  flex-shrink: 0;
+}
+
+#cw-input {
+  flex: 1;
+  resize: none;
+  border: 1px solid var(--cw-border);
+  border-radius: 12px;
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: var(--cw-font);
+  max-height: 96px;
+  line-height: 1.4;
+}
+
+#cw-input:focus {
+  outline: none;
+  border-color: var(--cw-accent);
+}
+
+#cw-send {
+  border: none;
+  background: var(--cw-accent);
+  color: var(--cw-text-light);
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s ease;
+}
+#cw-send:hover { background: var(--cw-accent-hover); }
+#cw-send:disabled { opacity: 0.5; cursor: not-allowed; }
+#cw-send svg { width: 17px; height: 17px; }
+
+@media (max-width: 480px) {
+  #cw-root { bottom: 16px; right: 16px; }
+  #cw-panel {
+    width: calc(100vw - 24px);
+    right: -8px;
+    height: min(70vh, 560px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #cw-toggle, #cw-panel, #cw-toggle svg, .cw-typing span {
+    transition: none;
+    animation: none;
+  }
+}
