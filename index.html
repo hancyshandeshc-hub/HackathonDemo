@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rainfall Prediction for Districts of Nepal — a machine-learning powered rainfall estimation platform." />
+  <title>Rainfall Prediction for Districts of Nepal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chatbot.css" />
+</head>
+<body>
+  <div class="page-glow page-glow-one"></div>
+  <div class="page-glow page-glow-two"></div>
+
+  <header class="site-header" id="top">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html" aria-label="Rainfall Prediction Nepal home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span>Rainfall<span class="brand-accent">Nepal</span></span>
+      </a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a class="active" href="index.html">Home</a>
+        <a href="prediction.html">Prediction</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero home-hero">
+      <div class="rain-layer" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="pulse-dot"></span> ML-powered rainfall intelligence for Nepal</div>
+          <h1>Know the rain.<br><em>Plan with confidence.</em></h1>
+          <p class="hero-lede">Predict monthly rainfall for Nepal's districts using temperature, humidity, wind, pressure and previous rainfall patterns.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary btn-lg" href="prediction.html">Predict Rainfall <span>→</span></a>
+            <a class="btn btn-ghost btn-lg" href="faq.html">Explore how it works</a>
+          </div>
+          <div class="hero-trust">
+            <div><strong>62</strong><span>districts</span></div>
+            <div><strong>6</strong><span>rainfall levels</span></div>
+            <div><strong>91.15%</strong><span>model accuracy*</span></div>
+          </div>
+          <p class="micro-note">*Accuracy figure supplied for this project; validate it against your final test set before presenting it as a benchmark.</p>
+        </div>
+
+        <div class="hero-visual reveal delay-1" aria-label="Illustration of rainfall over Nepal">
+          <div class="weather-card glass-card">
+            <div class="weather-top"><span>NEPAL • RAINFALL OUTLOOK</span><span class="live-dot">● LIVE UI</span></div>
+            <div class="mountain-scene">
+              <div class="sun"></div>
+              <svg viewBox="0 0 560 270" role="img" aria-label="Mountain and rainfall illustration">
+                <defs>
+                  <linearGradient id="mountainA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c6b69"/><stop offset="1" stop-color="#103c4d"/></linearGradient>
+                  <linearGradient id="mountainB" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b9a91"/><stop offset="1" stop-color="#1b5663"/></linearGradient>
+                </defs>
+                <path d="M0 235 L92 130 142 182 217 72 308 202 377 116 468 206 520 152 560 215 V270 H0Z" fill="url(#mountainA)"/>
+                <path d="M0 250 L105 180 166 210 252 136 337 218 411 158 482 221 560 185 V270 H0Z" fill="url(#mountainB)" opacity=".8"/>
+                <path d="M217 72 L199 98 217 91 232 99Z M377 116 L358 142 378 134 394 145Z" fill="#eefcfb" opacity=".92"/>
+                <g class="rain-lines" stroke="#a9e8ed" stroke-width="3" stroke-linecap="round" opacity=".8">
+                  <path d="M100 32l-11 25"/><path d="M135 50l-11 25"/><path d="M166 30l-11 25"/><path d="M430 35l-11 25"/><path d="M463 55l-11 25"/><path d="M495 29l-11 25"/>
+                </g>
+              </svg>
+              <div class="weather-chip"><span class="weather-icon">☁</span><div><b>Smart prediction</b><small>Powered by your ML model</small></div></div>
+            </div>
+          </div>
+          <div class="floating-stat stat-one"><span>🌧</span><div><b>Monthly</b><small>forecast view</small></div></div>
+          <div class="floating-stat stat-two"><span>⌁</span><div><b>District</b><small>level insights</small></div></div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#why">Scroll to explore <span>↓</span></a>
+    </section>
+
+    <section class="section why-section" id="why">
+      <div class="container">
+        <div class="section-heading centered reveal">
+          <span class="eyebrow">BUILT FOR NEPAL</span>
+          <h2>Rainfall information, made easier to understand.</h2>
+          <p>Instead of asking users to understand model variable names, the interface turns them into clear, human-friendly inputs.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal"><div class="feature-icon">◌</div><h3>District-focused</h3><p>Select one of 62 districts and get a rainfall estimate tailored to the selected location.</p></article>
+          <article class="feature-card reveal delay-1"><div class="feature-icon">≈</div><h3>Climate-aware inputs</h3><p>Humidity, temperature, wind, pressure and previous rainfall become the model's prediction signals.</p></article>
+          <article class="feature-card reveal delay-2"><div class="feature-icon">☔</div><h3>Actionable categories</h3><p>Every predicted value is translated into a rainfall level with practical environmental awareness.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section how-section">
+      <div class="container how-grid">
+        <div class="how-visual reveal">
+          <div class="process-card">
+            <span class="process-number">01</span><div><b>Choose your district & month</b><small>Tell the model where and when.</small></div>
+            <span class="process-arrow">→</span>
+          </div>
+          <div class="process-card active">
+            <span class="process-number">02</span><div><b>Enter climate conditions</b><small>Use the friendly labels in the form.</small></div>
+            <span class="process-arrow">→</span>
+          </div>
+          <div class="process-card">
+            <span class="process-number">03</span><div><b>Receive rainfall estimate</b><small>mm/day + category + awareness.</small></div>
+            <span class="process-arrow">✓</span>
+          </div>
+        </div>
+        <div class="how-copy reveal delay-1">
+          <span class="eyebrow">HOW IT WORKS</span>
+          <h2>From climate signals to a simple rainfall answer.</h2>
+          <p>The frontend collects the eight features expected by your ML workflow and sends them to the prediction API. The returned precipitation value is then categorized on the client for a clear result.</p>
+          <a href="prediction.html" class="text-link">Try the prediction form <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-section">
+      <div class="container cta-card reveal">
+        <div><span class="eyebrow light">READY TO TEST IT?</span><h2>Turn your model into an experience people can actually use.</h2></div>
+        <a href="prediction.html" class="btn btn-white btn-lg">Open Prediction <span>→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div><a class="brand footer-brand" href="index.html"><span class="brand-mark"><span></span><span></span><span></span></span><span>Rainfall<span class="brand-accent">Nepal</span></span></a><p>Rainfall Prediction for Districts of Nepal.</p></div>
+      <div class="footer-links"><a href="prediction.html">Prediction</a><a href="faq.html">FAQ</a><a href="contact.html">Contact</a></div>
+    </div>
+    <div class="container footer-bottom"><span>Built for a hackathon • ML + climate data</span><span>© 2026 RainfallNepal</span></div>
+  </footer>
+
+  <script>window.CW_CONFIG={apiUrl:"/api/chat",title:"RainfallNepal Assistant",subtitle:"Ask about rainfall & the predictor",greeting:"Hi! I’m RainfallNepal Assistant. Ask me about the prediction form, rainfall categories, or how the model works."};</script>
+  <script src="site.js"></script>
+  <script src="chatbot.js"></script>
+</body>
+</html>
